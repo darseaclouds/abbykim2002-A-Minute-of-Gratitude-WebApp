@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Journal{% endblock %}
+
+{% block content%}
+<h1 align="center">Journal</h1>
+<h5 align="center">Take one minute and improve your mental health today! - <a href="/about">Click here to learn more</a></h5>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{note.date.strftime("%m/%d/%Y")}}
+    {{note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control" rows=5>Today I am grateful for: &#013 1)&#013 2)&#013 3)</textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Entry</button>
+  </div>
+</form>
+{% endblock %}
